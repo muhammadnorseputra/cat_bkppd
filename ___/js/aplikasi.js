@@ -147,7 +147,7 @@ function login(e) {
 	e = e || window.event;
 	var data 	= $('#f_login').serialize();
 	$("input[type='submit']").html(base_url+"___/img/ajax-loader.gif").fadeIn('fast');
-	// var not = notyfy({text: "<i class='icon icon-spinner icon-spin'></i> Checking...", closeWith: ['hover'], layout: 'topRight'});
+	// var not = notyfy({text: "<i class='icon icon-spinner icon-spin'></i> Checking...", closeWith: ['hover'], layout: 'bottomLeft'});
 	$.ajax({
 		type: "POST",
 		data: data,
@@ -166,7 +166,7 @@ function login(e) {
 				setTimeout(() => {
 					n.close();
 					window.location.assign(base_url+"adm"); 
-					not.close();
+					n.close();
 				}, 1000);
 
 			}
@@ -311,16 +311,6 @@ function m_scan_qr(id,nim) {
 	            return stream;
 	};
 
-	Instascan.Camera.getCameras().then(function (cameras) {
-		if (cameras.length > 0) {
-		scanner.start(cameras[0]);
-		} else {
-		console.error('No cameras found.');
-		}
-	}).catch(function (e) {
-		console.error(e);
-	});
-
 	let scanner = new Instascan.Scanner(args);
 		scanner.addListener('active', function () {
 			el.style.height = 'auto'
@@ -372,7 +362,18 @@ function m_scan_qr(id,nim) {
 				scanner.start()
 			}
 	  });
-	  
+	
+	Instascan.Camera.getCameras().then(function (cameras) {
+		if (cameras.length > 0) {
+		scanner.start(cameras[0]);
+		// console.log(cameras)
+		} else {
+		console.error('No cameras found.');
+		}
+	}).catch(function (e) {
+		console.error(e);
+	});
+
 	repeat.unbind().bind('click', function() {
 		scanner.start()
 	 	$("#data_peserta").html('')

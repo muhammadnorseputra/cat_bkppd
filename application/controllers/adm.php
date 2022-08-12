@@ -204,9 +204,7 @@ class Adm extends CI_Controller {
 					}
 					} else {
 					$data_ok[5] .= '<a href="#" onclick="return m_scan_qr('.$d['id'].','.$d['nim'].');" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-random" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Buat PIN Ulang</a>';
-					if($this->session->userdata('admin_level') === 'admin') {
-						$data_ok[5] .= '<a href="#" onclick="return m_siswa_ur('.$d['id'].');" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Reset PIN Manual</a>';
-					}
+					
 
 					if ($d['ada'] == "0") {
 					$data_ok[5] .= '<a href="#" onclick="return m_siswa_u('.$d['id'].');" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Aktifkan User & Buat PIN</a>';
