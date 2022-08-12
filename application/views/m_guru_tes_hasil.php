@@ -1,19 +1,12 @@
 <div class="row col-md-12 ini_bodi">
   <div class="panel panel-info">
-<<<<<<< HEAD
-    <div class="panel-heading">Daftar Hasil Tes
-    </div>
-    <div class="panel-body">
 
-
-=======
     <div class="panel-heading" style="display: flex; justify-content: space-between;">Daftar Hasil Tes
       
     <a href="<?= base_url("adm/monitor_hasil/".$this->monitoring->get_item_mapel()) ?>" target="_blank" class="btn btn-primary">Live Score</a>
     </div>
     <div class="panel-body">
 
->>>>>>> 6d9518d (initial)
       <table class="table table-bordered" id="datatabel">
         <thead>
           <tr>

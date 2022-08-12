@@ -8,11 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-<<<<<<< HEAD
 	<title>CBT BKPSDM KAB. BALANGAN</title>
-=======
-	<title>CAT BKPSDM KAB. BALANGAN</title>
->>>>>>> 6d9518d (initial)
 	<!-- Meta-Tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
@@ -36,7 +32,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!--// Stylesheets -->
 	<!--online fonts-->
 	<link href="//fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-	<!--//online fonts-->
+	
 </head>
 
 <body>
@@ -48,17 +44,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<form action="#" method="post" name="fl" id="f_login" onsubmit="return login();">
 			<div id="konfirmasi" style="width:100%;"></div>
 			<div class="agile-field-txt">
-<<<<<<< HEAD
-				<input type="text" name="username" id="username" placeholder="Masukan Nomor Registrasi Peserta" required="" value="<?php echo $this->session->userdata('nik'); ?>" />
-			</div>
-			<div class="agile-field-txt">
-				<input type="password" name="password" placeholder="Masukan PIN Peserta" required="" id="password" />
-=======
+
 				<input type="text" name="username" id="username" placeholder="Masukan Nomor Peserta" required="" value="<?php echo $this->session->userdata('nik'); ?>" />
 			</div>
 			<div class="agile-field-txt">
 				<input type="password" name="password" placeholder="Masukan PIN" required="" id="password" />
->>>>>>> 6d9518d (initial)
 			</div>
 			<div class="w3ls-bot">
 				<input type="submit" value="LOGIN">
