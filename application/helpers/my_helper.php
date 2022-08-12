@@ -241,6 +241,7 @@ function cek_hakakses($arr_yg_boleh_akses, $userid) {
 	}
 }		
 
+<<<<<<< HEAD
 function encrypt_decrypt($action, $string) {
     $output = false;
     $encrypt_method = "AES-256-CBC";
@@ -259,3 +260,17 @@ function encrypt_decrypt($action, $string) {
     }
     return $output;
 }
+=======
+if ( ! function_exists('RandomPIN'))
+{
+    
+  function RandomPIN($length = 6) {
+	    $characters = '0123456789';
+	    $randomString = '';
+	    for ($i = 0; $i < $length; $i++) {
+	        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+	    }
+	    return $randomString;
+	}
+}
+>>>>>>> 6d9518d (initial)

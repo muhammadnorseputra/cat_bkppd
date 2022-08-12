@@ -33,6 +33,7 @@ table tr td {
 
 h4 {margin-bottom: 0px; margin-top: 0px;}
 .ctr {text-align: center}
+<<<<<<< HEAD
 .rgt {text-align: right}
 @media screen {
 	.note {
@@ -47,3 +48,6 @@ h4 {margin-bottom: 0px; margin-top: 0px;}
 		font-size: 11px;
 	}
 }
+=======
+.rgt {text-align: right}
+>>>>>>> 6d9518d (initial)

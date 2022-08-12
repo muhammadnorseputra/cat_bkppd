@@ -68,9 +68,15 @@ class Adm extends CI_Controller {
 				$ket = "edit";
 			} else {
 				$ket = "tambah";
+<<<<<<< HEAD
 				$this->db->query("INSERT INTO m_siswa VALUES (null, '".bersih($p,"nama")."', '".bersih($p,"nim")."', '".bersih($p,"jurusan")."')");
 			}
 
+=======
+				$this->db->query("INSERT INTO m_siswa (nama, nim, jurusan) VALUES ('".bersih($p,"nama")."', '".bersih($p,"nim")."', '".bersih($p,"jurusan")."')");
+			}
+			
+>>>>>>> 6d9518d (initial)
 			$ret_arr['status'] 	= "ok";
 			$ret_arr['caption']	= $ket." sukses";
 			j($ret_arr);
@@ -83,12 +89,17 @@ class Adm extends CI_Controller {
 			j($ret_arr);
 			exit();
 		} else if ($uri3 == "user") {
+<<<<<<< HEAD
 			$det_user = $this->db->query("SELECT * FROM m_siswa WHERE id = '$uri4'")->row();
+=======
+			$det_user = $this->db->query("SELECT id, nim FROM m_siswa WHERE id = '$uri4'")->row();
+>>>>>>> 6d9518d (initial)
 
 			if (!empty($det_user)) {
 				$q_cek_username = $this->db->query("SELECT id FROM m_admin WHERE username = '".$det_user->nim."' AND level = 'siswa'")->num_rows();
 
 				if ($q_cek_username < 1) {
+<<<<<<< HEAD
 					$generate_password = random_string('nozero', 8);
 					$this->db->query("INSERT INTO m_admin VALUES (null, '".$det_user->nim."','". base64_encode($generate_password)."', 'siswa', '".$det_user->id."')");
 					$ret_arr['status_scan_qr'] 	= ['profile' => $det_user, 'auth' => $generate_password];
@@ -107,6 +118,16 @@ class Adm extends CI_Controller {
 					$ret_arr['status_scan_qr'] 	= null;
 					$ret_arr['status'] 	= "gagal";
 					$ret_arr['caption']	= "Username telah digunakan atau pin telah dibuat";
+=======
+					$generate_password = RandomPIN(6);
+					$this->db->query("INSERT INTO m_admin VALUES (null, '".$det_user->nim."','". base64_encode($generate_password)."', 'siswa', '".$det_user->id."')");
+					$ret_arr['status'] 	= "ok";
+					$ret_arr['caption']	= "tambah user sukses";
+					j($ret_arr);
+				} else {
+					$ret_arr['status'] 	= "gagal";
+					$ret_arr['caption']	= "Username telah digunakan";
+>>>>>>> 6d9518d (initial)
 					j($ret_arr);					
 				}
 			} else {
@@ -116,7 +137,11 @@ class Adm extends CI_Controller {
 			}
 			exit();
 		} else if ($uri3 == "user_reset") {
+<<<<<<< HEAD
 			$generate_password = random_string('nozero', 8);
+=======
+			$generate_password = RandomPIN(6);
+>>>>>>> 6d9518d (initial)
 			$det_user = $this->db->query("SELECT id, nim FROM m_siswa WHERE id = '$uri4'")->row();
 
 			$this->db->query("UPDATE m_admin SET password = '".base64_encode($generate_password)."' WHERE level = 'siswa' AND kon_id = '".$det_user->id."'");
@@ -187,11 +212,16 @@ class Adm extends CI_Controller {
 	            $data_ok[] = $d['jurusan'];
 
 
+<<<<<<< HEAD
 	            if($this->session->userdata('admin_level') === 'admin') {
+=======
+
+>>>>>>> 6d9518d (initial)
 	            $data_ok[] = '<div class="btn-group">
                           <a href="#" onclick="return m_siswa_e('.$d['id'].');" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-pencil" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Edit</a>
                           <a href="#" onclick="return m_siswa_h('.$d['id'].');" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Hapus</a>
                          ';
+<<<<<<< HEAD
               } else {
               	$data_ok[] = '';
               }
@@ -207,6 +237,13 @@ class Adm extends CI_Controller {
                   if($this->session->userdata('admin_level') === 'admin') {
                   	$data_ok[5] .= '<a href="#" onclick="return m_siswa_ur('.$d['id'].');" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Reset PIN Manual</a>';
                   }
+=======
+
+                if ($d['ada'] == "0") {
+                  $data_ok[5] .= '<a href="#" onclick="return m_siswa_u('.$d['id'].');" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Aktifkan User & Buat PIN</a>';
+                } else {
+                  $data_ok[5] .= '<a href="#" onclick="return m_siswa_ur('.$d['id'].');" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-random" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Reset Password / PIN</a>';
+>>>>>>> 6d9518d (initial)
                 }
 
 	            $data[] = $data_ok;
@@ -1064,11 +1101,19 @@ class Adm extends CI_Controller {
 		$p = json_decode(file_get_contents('php://input'));
 		//return as json
 		$jeson = array();
+<<<<<<< HEAD
 
 		$wh_1 = $a['sess_level'] == "admin" ? "" : " AND a.id_guru = '".$a['sess_konid']."'";
 		//$a['data'] = $this->db->query($wh_1)->result();
 		
 
+=======
+		$wh_1 = $a['sess_level'] == "admin" ? "" : " AND a.id_guru = '".$a['sess_konid']."'";
+		//$a['data'] = $this->db->query($wh_1)->result();
+		
+		
+		$a['idtes'] = [$uri3,$uri4,$uri5];
+>>>>>>> 6d9518d (initial)
 		$a['p_mapel'] = obj_to_array($this->db->query("SELECT * FROM m_mapel")->result(), "id,nama");
 		
 		if ($uri3 == "det") {
@@ -1528,6 +1573,7 @@ class Adm extends CI_Controller {
 		$p = json_decode(file_get_contents('php://input'));
 		$ret = array();
 		if ($uri3 == "simpan") {
+<<<<<<< HEAD
 			$p1_md5 = base64_encode($p->p1);
 			$p2_md5 = base64_encode($p->p2);
 			$p3_md5 = base64_encode($p->p3);
@@ -1536,13 +1582,27 @@ class Adm extends CI_Controller {
 				$ret['status'] = "error";
 				$ret['msg'] = "Password lama tidak sama...";
 			} else if ($p2_md5 != $p3_md5) {
+=======
+			$p1_base64_encode = base64_encode($p->p1);
+			$p2_base64_encode = base64_encode($p->p2);
+			$p3_base64_encode = base64_encode($p->p3);
+			$cek_pass_lama = $this->db->query("SELECT password FROM m_admin WHERE id = '".$a['sess_admin_id']."'")->row();
+			if ($cek_pass_lama->password != $p1_base64_encode) {
+				$ret['status'] = "error";
+				$ret['msg'] = "Password lama tidak sama...";
+			} else if ($p2_base64_encode != $p3_base64_encode) {
+>>>>>>> 6d9518d (initial)
 				$ret['status'] = "error";
 				$ret['msg'] = "Password baru konfirmasinya tidak sama...";
 			} else if (strlen($p->p2) < 6) {
 				$ret['status'] = "error";
 				$ret['msg'] = "Password baru minimal terdiri dari 6 huruf..";
  			} else {
+<<<<<<< HEAD
 				$this->db->query("UPDATE m_admin SET password = '".$p3_md5."' WHERE id = '".$a['sess_admin_id']."'");
+=======
+				$this->db->query("UPDATE m_admin SET password = '".$p3_base64_encode."' WHERE id = '".$a['sess_admin_id']."'");
+>>>>>>> 6d9518d (initial)
 				$ret['status'] = "ok";
 				$ret['msg'] = "Password berhasil diubah...";
 			}
@@ -1762,7 +1822,11 @@ class Adm extends CI_Controller {
 			$tbl = $this->db->get_where('m_siswa', array('nim' => $this->input->post('noktp')));
 			if($tbl->num_rows() > 0) {
 				$r = $tbl->row();
+<<<<<<< HEAD
 				$response = array('valid' => false, 'message' => 'Nomor peserta ini sudah terdaftar.');
+=======
+				$response = array('valid' => false, 'message' => 'Nomor Peserta ini sudah terdaftar.');
+>>>>>>> 6d9518d (initial)
 			} else {
 				$response = array('valid' => true);
 			}
@@ -1779,14 +1843,22 @@ class Adm extends CI_Controller {
 		return $last;
 	}
 	
+<<<<<<< HEAD
 	public function monitor_hasil() {
+=======
+	public function monitor_hasil($twk,$tiu,$tkp) {
+>>>>>>> 6d9518d (initial)
 		$this->load->model('monitoring');
 		$this->cek_aktif();
 		
 		//var def uri segment
+<<<<<<< HEAD
 		$twk = $this->uri->segment(3);
         $tiu = $this->uri->segment(4);
         $tkp = $this->uri->segment(5);
+=======
+		$a['bidang_tes'] = ['twk' => $twk, 'tiu' => $tiu, 'tkp' => $tkp];
+>>>>>>> 6d9518d (initial)
 		$a['detil_tes'] = $this->db->query("SELECT COUNT(m_soal.id) as jmlSoal 
 										FROM m_soal 
 										LEFT JOIN m_mapel ON m_mapel.id = m_soal.id_mapel")->row();
@@ -1801,6 +1873,7 @@ class Adm extends CI_Controller {
 			GROUP BY m_siswa.nama")->result();
 		$this->load->view("monitoring", $a);
 	}
+<<<<<<< HEAD
 	function generateQR($data) {
 		$this->load->library('qrcode/ciqrcode');
 		// header("Content-Type: image/png");
@@ -1821,6 +1894,8 @@ class Adm extends CI_Controller {
 		];
 		$this->load->view("kartupeserta_cetak", $data);
 	}
+=======
+>>>>>>> 6d9518d (initial)
 	
 }
 /* End of file welcome.php */

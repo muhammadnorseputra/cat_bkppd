@@ -17,8 +17,13 @@
             <th width="5%">No</th>
             <th width="10%">Pin</th>
             <th width="25%">Nama</th>
+<<<<<<< HEAD
             <th width="20">Nik</th>
             <th width="5%">Pendidikan</th>
+=======
+            <th width="20">No.Peserta</th>
+            <th width="5%">Jurusan</th>
+>>>>>>> 6d9518d (initial)
             <th width="35%">Aksi</th>
           </tr>
         </thead>
@@ -55,6 +60,7 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 
 <div class="modal fade" id="m_scan_qrcode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -75,3 +81,5 @@
     </div>
   </div>
 </div>
+=======
+>>>>>>> 6d9518d (initial)

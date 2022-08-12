@@ -284,6 +284,10 @@ function refresh_token(id) {
 	return false;
 }
 
+<<<<<<< HEAD
+=======
+/* admindos las puerta conos il grande partite */
+>>>>>>> 6d9518d (initial)
 //siswa
 function m_siswa_e(id) {
 	$("#m_siswa").modal('show');
@@ -300,6 +304,7 @@ function m_siswa_e(id) {
 	});
 	return false;
 }
+<<<<<<< HEAD
 function m_scan_qr(id,nim) {
 	$("#m_scan_qrcode").modal('show');
 	var el = document.getElementById('preview');
@@ -382,6 +387,8 @@ function m_scan_qr(id,nim) {
 	return false;
 }
 
+=======
+>>>>>>> 6d9518d (initial)
 function m_siswa_s() {
 	var f_asal	= $("#f_siswa");
 	var form	= getFormData(f_asal);
@@ -434,7 +441,11 @@ function m_siswa_u(id) {
 	return false;
 }
 function m_siswa_ur(id) {
+<<<<<<< HEAD
 	if (confirm('Anda yakin..? akan mereset password ..!')) {
+=======
+	if (confirm('Anda akan mereset password / PIN ..!')) {
+>>>>>>> 6d9518d (initial)
 		$.ajax({
 			type: "GET",
 			url: base_url+"adm/m_siswa/user_reset/"+id,

@@ -7,7 +7,11 @@ $active_record = true;
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
+<<<<<<< HEAD
 $db['default']['database'] = 'db_cat_dua';
+=======
+$db['default']['database'] = 'db_cbt_bkppd';
+>>>>>>> 6d9518d (initial)
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = true;
