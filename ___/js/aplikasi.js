@@ -301,56 +301,147 @@ function m_siswa_e(id) {
 	return false;
 }
 
+// function m_scan_qr(id,nim) {
+// 	$("#m_scan_qrcode").modal('show');
+// 	var el = document.getElementById('preview');
+// 	var repeat = $("button#repeatScan");
+// 	const args = { video: el, captureImage: true, refractoryPeriod: 1000, mirror: false };
+// 	window.URL.createObjectURL = (stream) => {
+// 	            args.video.srcObject = stream;
+// 	            return stream;
+// 	};
+
+// 	let scanner = new Instascan.Scanner(args);
+// 		scanner.addListener('active', function () {
+// 			el.style.height = 'auto'
+// 		})
+// 		scanner.addListener('inactive', function () {
+// 			el.style.height = '0px'
+// 		})
+// 	  	scanner.addListener('scan', function (content, image) {
+// 		console.log(content)
+// 			el.style.height = '0px';
+// 			if(content == nim) {
+// 			$.ajax({
+// 					type: "GET",
+// 					url: base_url+"adm/m_siswa/user/"+id,
+// 					success: function(response) {
+// 						if (response.status == "ok") {
+// 							// window.location.assign(base_url+"adm/m_siswa");
+// 							$('#data_peserta').html(`
+// 								<table>
+// 									<tr>
+// 										<td colspan="3"><img src="${image}" width="100%" /></td>
+// 									</tr>
+// 									<tr>
+// 										<td width="100">Nomor Peserta</td>
+// 										<td align="center" width="20">:</td>
+// 										<td>${response.status_scan_qr.profile.nim}</td>
+// 									</tr>
+// 									<tr>
+// 										<td width="100">Nama</td>
+// 										<td align="center"  width="20">:</td>
+// 										<td>${response.status_scan_qr.profile.nama}</td>
+// 									</tr>
+// 									<tr>
+// 										<td width="100">PIN</td>
+// 										<td align="center"  width="20">:</td>
+// 										<td style="font-size:20px;">${response.status_scan_qr.auth}</td>
+// 									</tr>
+// 								</table>
+// 							`)
+// 							scanner.stop();
+// 							reloadTable();
+// 						} else {
+// 							$("#data_peserta").html(`PIN telah berhasil dibuat.`);
+// 						}
+// 					}
+// 				});
+// 			} else {
+// 				alert('QR-Code Tidak Sesuai');
+// 				scanner.start()
+// 			}
+// 		});
+// 	Instascan.Camera.getCameras().then(function (cameras) {
+// 		if (cameras.length > 0) {
+// 		scanner.start(cameras[0]);
+// 		// console.log(cameras)
+// 		} else {
+// 		console.error('No cameras found.');
+// 		}
+// 	}).catch(function (e) {
+// 		console.error(e);
+// 	});
+
+// 	repeat.unbind().bind('click', function() {
+// 		scanner.start()
+// 	 	$("#data_peserta").html('')
+// 	})
+// 	$('#m_scan_qrcode').on('hidden.bs.modal', function (e) {
+// 	 	scanner.stop()
+// 	 	$("#data_peserta").html('')
+// 	})
+// 	return false;
+// }
+
 function m_scan_qr(id,nim) {
 	$("#m_scan_qrcode").modal('show');
-	var el = document.getElementById('preview');
+	var resultContainer = document.getElementById('qr-reader-results');
 	var repeat = $("button#repeatScan");
-	const args = { video: el, captureImage: true };
-	window.URL.createObjectURL = (stream) => {
-	            args.video.srcObject = stream;
-	            return stream;
-	};
+	
+	const formatsToSupport = [
+		Html5QrcodeSupportedFormats.QR_CODE,
+		Html5QrcodeSupportedFormats.UPC_A,
+		Html5QrcodeSupportedFormats.UPC_E,
+		Html5QrcodeSupportedFormats.UPC_EAN_EXTENSION,
+	  ];
 
-	let scanner = new Instascan.Scanner(args);
-		scanner.addListener('active', function () {
-			el.style.height = 'auto'
-		})
-		scanner.addListener('inactive', function () {
-			el.style.height = '0px'
-		})
-	  scanner.addListener('scan', function (content, image) {
-		console.log(content)
-			el.style.height = '0px';
-			if(content == nim) {
-		    $.ajax({
+	let config = {
+		fps: 10,
+		qrbox: 300,
+		rememberLastUsedCamera: true,
+		// Only support camera scan type.
+		supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+		formatsToSupport: formatsToSupport
+	  };
+
+	var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", config, false);
+	html5QrcodeScanner.render(onScanSuccess);
+
+	function onScanSuccess(decodedText, decodedResult) {
+
+			// Handle on success condition with the decoded message.
+			if(decodedText == nim) {
+				$.ajax({
 					type: "GET",
 					url: base_url+"adm/m_siswa/user/"+id,
 					success: function(response) {
 						if (response.status == "ok") {
 							// window.location.assign(base_url+"adm/m_siswa");
-							$('#data_peserta').html(`
+							resultContainer.innerHTML = `
 								<table>
 									<tr>
-										<td colspan="3"><img src="${image}" width="100%" /></td>
+										<td colspan="3" style="font-size:18px;">PIN Berhasil Dibuat</td>
+										
 									</tr>
 									<tr>
 										<td width="100">Nomor Peserta</td>
 										<td align="center" width="20">:</td>
-										<td>${response.status_scan_qr.profile.nim}</td>
+										<td style="font-size:20px;">${response.status_scan_qr.profile.nim}</td>
 									</tr>
 									<tr>
 										<td width="100">Nama</td>
 										<td align="center"  width="20">:</td>
-										<td>${response.status_scan_qr.profile.nama}</td>
+										<td style="font-size:20xp;">${response.status_scan_qr.profile.nama}</td>
 									</tr>
 									<tr>
 										<td width="100">PIN</td>
 										<td align="center"  width="20">:</td>
-										<td style="font-size:20px;">${response.status_scan_qr.auth}</td>
+										<td style="font-size:28px; color: green; letter-spacing: 1.1em">${response.status_scan_qr.auth}</td>
 									</tr>
 								</table>
-							`)
-							scanner.stop();
+							`
+							html5QrcodeScanner.clear();
 							reloadTable();
 						} else {
 							$("#data_peserta").html(`PIN telah berhasil dibuat.`);
@@ -358,31 +449,21 @@ function m_scan_qr(id,nim) {
 					}
 				});
 			} else {
-				alert('QR-Code Tidak Sesuai');
-				scanner.start()
+				resultContainer.innerHTML = `QR-Code Tidak Sesuai Dengan ${nim}`
+				html5QrcodeScanner.clear();
 			}
-	  });
+		
+	}
 	
-	Instascan.Camera.getCameras().then(function (cameras) {
-		if (cameras.length > 0) {
-		scanner.start(cameras[0]);
-		// console.log(cameras)
-		} else {
-		console.error('No cameras found.');
-		}
-	}).catch(function (e) {
-		console.error(e);
-	});
-
 	repeat.unbind().bind('click', function() {
-		scanner.start()
-	 	$("#data_peserta").html('')
+		html5QrcodeScanner.render(onScanSuccess);
+		resultContainer.innerHTML = '';
 	})
+
 	$('#m_scan_qrcode').on('hidden.bs.modal', function (e) {
-	 	scanner.stop()
-	 	$("#data_peserta").html('')
-	})
-	return false;
+		html5QrcodeScanner.clear();
+		resultContainer.innerHTML = '';
+	})	
 }
 
 function m_siswa_s() {

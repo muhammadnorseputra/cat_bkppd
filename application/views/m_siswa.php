@@ -66,8 +66,10 @@
         <h4 id="myModalLabel">SCAN QR</h4>
       </div>
       <div class="modal-body">
-        <video id="preview" style="max-width: 100%"></video>
-        <div id="data_peserta"></div>
+        <!-- <video id="preview" style="max-width: 100%"></video>
+        <div id="data_peserta"></div> -->
+        <div id="qr-reader" style="width:100%"></div>
+        <div id="qr-reader-results"></div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" type="button" id="repeatScan"><i class="fa fa-check"></i> Ulangi</button>

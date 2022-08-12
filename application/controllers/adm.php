@@ -189,27 +189,27 @@ class Adm extends CI_Controller {
 
 	            if($this->session->userdata('admin_level') === 'admin') {
 					$data_ok[] = '<div class="btn-group">
-							<a href="#" onclick="return m_siswa_e('.$d['id'].');" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-pencil" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Edit</a>
-							<a href="#" onclick="return m_siswa_h('.$d['id'].');" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Hapus</a>
+							<a href="#" onclick="return m_siswa_e('.$d['id'].');" class="btn btn-info btn-md"><i class="glyphicon glyphicon-pencil" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Edit</a>
+							<a href="#" onclick="return m_siswa_h('.$d['id'].');" class="btn btn-danger btn-md"><i class="glyphicon glyphicon-remove" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Hapus</a>
 							';
 				} else {
 					$data_ok[] = '';
 				}
 
                 if ($d['ada'] == "0") {
-					$data_ok[5] .= '<a href="#" onclick="return m_scan_qr('.$d['id'].','.$d['nim'].');" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Buat PIN</a>';
+					$data_ok[5] .= '<a href="#" onclick="return m_scan_qr('.$d['id'].','.$d['nim'].');" class="btn btn-info btn-md"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Buat PIN</a>';
 
 					if($this->session->userdata('admin_level') === 'admin') {
-						$data_ok[5] .= '<a href="#" onclick="return m_siswa_u('.$d['id'].');" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Buat PIN Manual</a>';
+						$data_ok[5] .= '<a href="#" onclick="return m_siswa_u('.$d['id'].');" class="btn btn-warning btn-md"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Buat PIN Manual</a>';
 					}
 					} else {
-					$data_ok[5] .= '<a href="#" onclick="return m_scan_qr('.$d['id'].','.$d['nim'].');" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-random" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Buat PIN Ulang</a>';
+					$data_ok[5] .= '<a href="#" onclick="return m_scan_qr('.$d['id'].','.$d['nim'].');" class="btn btn-warning btn-md"><i class="glyphicon glyphicon-random" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Buat PIN Ulang</a>';
 					
 
 					if ($d['ada'] == "0") {
-					$data_ok[5] .= '<a href="#" onclick="return m_siswa_u('.$d['id'].');" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Aktifkan User & Buat PIN</a>';
+					$data_ok[5] .= '<a href="#" onclick="return m_siswa_u('.$d['id'].');" class="btn btn-info btn-md"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Aktifkan User & Buat PIN</a>';
 					} else {
-					$data_ok[5] .= '<a href="#" onclick="return m_siswa_ur('.$d['id'].');" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-random" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Reset Password / PIN</a>';
+					$data_ok[5] .= '<a href="#" onclick="return m_siswa_ur('.$d['id'].');" class="btn btn-info btn-md"><i class="glyphicon glyphicon-random" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Buat PIN Manual</a>';
                 	}
 				}
 	       	     $data[] = $data_ok;

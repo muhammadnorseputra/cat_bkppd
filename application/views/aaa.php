@@ -9,6 +9,7 @@
       <link href="<?php echo base_url(); ?>___/css/style.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>___/plugin/fa/css/font-awesome.min.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>___/plugin/datatables/dataTables.bootstrap.css" rel="stylesheet">
+      <script src="<?= base_url(); ?>___/js/html5-qrcode.min.js"></script>
    </head>
    <body>
 
@@ -83,7 +84,8 @@ var uri_js = "<?php echo $this->config->item('uri_js'); ?>";
 </script>
 <script src="<?php echo base_url(); ?>___/js/aplikasi.js?time=<?php echo time(); ?>"></script> 
 
-<script src="<?php echo base_url(); ?>___/js/instascan.min.js"></script> 
+<!-- <script src="<?php echo base_url(); ?>___/js/instascan.min.js"></script>  -->
+
 
 
 
