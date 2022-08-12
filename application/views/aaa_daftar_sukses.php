@@ -56,6 +56,7 @@
 	<div class="col-md-2"></div>
 </div> 
 
+
 <script src="<?php echo base_url(); ?>___/plugin/jquery_loading/jquery.loading.min.js"></script>
 <script src="<?php echo base_url(); ?>___/plugin/jquery_notyfy/jquery.notyfy.js"></script>
 <script>
@@ -74,7 +75,7 @@
       				});
 				
 				setTimeout(() => {
-					window.location.replace("<?= base_url('adm/daftar') ?>");
+					window.location.replace("<?= base_url('adm/login') ?>");
 				}, 2000);
 			}
 		});
@@ -103,7 +104,6 @@
 </script>
 <script src="<?php echo base_url(); ?>___/js/bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>___/plugin/jquery_confirm/msgbox.js"></script>
-
 </body>
 </html>
 
