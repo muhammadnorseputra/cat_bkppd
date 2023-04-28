@@ -19,7 +19,7 @@
             <th width="25%">Nama</th>
 
             <th width="20">No.Peserta</th>
-            <th width="5%">Jurusan</th>
+            <th width="5%">Pendidikan</th>
 
             <th width="35%">Aksi</th>
           </tr>
@@ -45,7 +45,7 @@
             <input type="hidden" name="id" id="id" value="0">
               <table class="table table-form">
                 <tr><td style="width: 25%">Nama</td><td style="width: 75%"><input type="text" class="form-control" name="nama" id="nama" required></td></tr>
-                <tr><td style="width: 25%">NIM</td><td style="width: 75%"><input type="text" class="form-control" name="nim" id="nim" required></td></tr>
+                <tr><td style="width: 25%">No. Peserta</td><td style="width: 75%"><input type="text" class="form-control" name="nim" id="nim" readonly></td></tr>
                 <tr><td style="width: 25%">Pendidikan</td><td style="width: 75%"><input type="text" class="form-control" name="jurusan" id="jurusan" required></td></tr>
               </table>
       </div>

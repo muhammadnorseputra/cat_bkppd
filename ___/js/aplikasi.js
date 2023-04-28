@@ -484,14 +484,19 @@ function m_siswa_s() {
 	});
 	return false;
 }
-function m_siswa_h(id) {
+function m_siswa_h(id,nim) {
 	if (confirm('Anda yakin..?')) {
 		$.ajax({
 			type: "GET",
+			data: {
+				nim: nim
+			},
 			url: base_url+"adm/m_siswa/hapus/"+id,
 			success: function(response) {
 				if (response.status == "ok") {
-					window.location.assign(base_url+"adm/m_siswa"); 
+					// window.location.assign(base_url+"adm/m_siswa"); 
+					reloadTable();
+					console.log(response.qr_status)
 				} else {
 					console.log('gagal');
 				}

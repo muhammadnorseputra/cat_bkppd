@@ -77,7 +77,15 @@ class Adm extends CI_Controller {
 			exit();
 		} else if ($uri3 == "hapus") {
 			$this->db->query("DELETE FROM m_siswa WHERE id = '".$uri4."'");
-			$this->db->query("DELETE FROM m_admin WHERE level = 'siswa' AND kon_id = '".$uri4."'");			
+			$this->db->query("DELETE FROM m_admin WHERE level = 'siswa' AND kon_id = '".$uri4."'");	
+			$qr_nim = $_GET['nim'];
+			$path = "qrcode/$qr_nim.png";
+			if(@unlink($path)) {
+			     $ret_arr['qr_status'] = 'deleted successfully';
+			}
+			else {
+			     $ret_arr['qr_status'] = 'errors occured or file not found';
+			}	
 			$ret_arr['status'] 	= "ok";
 			$ret_arr['caption']	= "hapus sukses";
 			j($ret_arr);
@@ -190,7 +198,7 @@ class Adm extends CI_Controller {
 	            if($this->session->userdata('admin_level') === 'admin') {
 					$data_ok[] = '<div class="btn-group">
 							<a href="#" onclick="return m_siswa_e('.$d['id'].');" class="btn btn-info btn-md"><i class="glyphicon glyphicon-pencil" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Edit</a>
-							<a href="#" onclick="return m_siswa_h('.$d['id'].');" class="btn btn-danger btn-md"><i class="glyphicon glyphicon-remove" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Hapus</a>
+							<a href="#" onclick="return m_siswa_h('.$d['id'].',\''.$d['nim'].'\');" class="btn btn-danger btn-md"><i class="glyphicon glyphicon-remove" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Hapus</a>
 							';
 				} else {
 					$data_ok[] = '';
