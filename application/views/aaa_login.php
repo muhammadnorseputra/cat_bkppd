@@ -51,9 +51,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<input type="password" name="password" placeholder="Masukan PIN" required="" id="password" />
 			</div>
 			<div class="w3ls-bot">
-				<input type="submit" value="LOGIN">
-				<hr>
-				<a href="<?php echo base_url('adm/daftar') ?>" class="btn btn-lg btn-block btn-primary"> Belum punya akun ? Daftar Sekarang.</a>
+				<input type="submit" value="LOGIN" style="padding: 18px">
+				<!-- <hr>
+				<a href="<?php echo base_url('adm/daftar') ?>" class="btn btn-lg btn-block btn-primary"> Belum punya akun ? Daftar Sekarang.</a> -->
 			</div>
 		</form>
 

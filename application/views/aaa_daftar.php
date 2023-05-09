@@ -73,7 +73,7 @@
 							data-validation-error-msg-container="p.help-block-nik" data-validation-error-msg-required="Nomor registrasi wajib diisi" data-validation-error-msg-length="Nilai input minimal & maksimal 8 angka" data-validation-error-msg-number="Jenis format hanya boleh angka" 
 							type="text" id="noktp" name="noktp" placeholder="No. Registrasi Peserta" class="form-control"/>
 						</div> <!-- /password -->
-						<p class="help-block-nik text-right"></p>
+						<p class="help-block-nik text-right">Masukan No Identitas, misal KTP/Kartu Pelajar</p>
 						<hr>
 						<label for="namalengkap ">Nama Lengkap</label>
 						<div class="input-group">
