@@ -41,11 +41,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<img src="<?php echo base_url(); ?>___/img/bg1.png" alt="logo_img" />
 		<!-- form starts here -->
 
-		<form action="#" method="post" name="fl" id="f_login" onsubmit="return login();">
+		<form action="#" method="post" name="fl" id="f_login" autocomplete="off" onsubmit="return login();">
 			<div id="konfirmasi" style="width:100%;"></div>
 			<div class="agile-field-txt">
 
-				<input type="text" name="username" id="username" placeholder="Masukan Nomor Peserta" required="" value="<?php echo $this->session->userdata('nik'); ?>" />
+				<input type="text" name="username" id="username" autocomplete="off" placeholder="Masukan Nomor Peserta" required="" value="<?php echo $this->session->userdata('nik'); ?>" />
 			</div>
 			<div class="agile-field-txt">
 				<input type="password" name="password" placeholder="Masukan PIN" required="" id="password" />
