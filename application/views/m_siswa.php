@@ -1,7 +1,7 @@
 <div class="row col-md-12 ini_bodi">
   <div class="panel panel-info">
     <div class="panel-heading">Data Siswa
-      <?php if($this->session->userdata('admin_level') == 'admin'): ?>
+      <?php if($this->session->userdata('admin_level') == 'admin' || $this->session->userdata('admin_level') == 'registrasi'): ?>
       <div class="tombol-kanan">
         <a class="btn btn-success btn-sm tombol-kanan" href="#" onclick="return m_siswa_e(0);"><i class="glyphicon glyphicon-plus"></i> &nbsp;&nbsp;Tambah</a>        
         <a class="btn btn-warning btn-sm tombol-kanan" href="<?php echo base_url(); ?>upload/format_import_siswa.xlsx" ><i class="glyphicon glyphicon-download"></i> &nbsp;&nbsp;Download Format Import</a>
@@ -44,9 +44,9 @@
           <form name="f_siswa" id="f_siswa" onsubmit="return m_siswa_s();">
             <input type="hidden" name="id" id="id" value="0">
               <table class="table table-form">
+                <tr><td style="width: 25%">No. Peserta</td><td style="width: 75%"><input type="text" class="form-control" name="nim" id="nim" required></td></tr>
                 <tr><td style="width: 25%">Nama</td><td style="width: 75%"><input type="text" class="form-control" name="nama" id="nama" required></td></tr>
-                <tr><td style="width: 25%">No. Peserta</td><td style="width: 75%"><input type="text" class="form-control" name="nim" id="nim" readonly></td></tr>
-                <tr><td style="width: 25%">Pendidikan</td><td style="width: 75%"><input type="text" class="form-control" name="jurusan" id="jurusan" required></td></tr>
+                <tr><input type="hidden" class="form-control" name="jurusan" id="jurusan"></tr>
               </table>
       </div>
       <div class="modal-footer">

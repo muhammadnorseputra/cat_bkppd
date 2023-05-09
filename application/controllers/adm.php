@@ -65,6 +65,7 @@ class Adm extends CI_Controller {
 			$ket 	= "";
 			if ($p->id != 0) {
 				$this->db->query("UPDATE m_siswa SET nama = '".bersih($p,"nama")."', nim = '".bersih($p,"nim")."', jurusan = '".bersih($p,"jurusan")."'	WHERE id = '".bersih($p,"id")."'");
+				$this->db->query("UPDATE m_admin SET username = '".bersih($p,"nim")."' WHERE kon_id = '".bersih($p,"id")."'");
 				$ket = "edit";
 			} else {
 				$ket = "tambah";
@@ -97,16 +98,15 @@ class Adm extends CI_Controller {
 				$q_cek_username = $this->db->query("SELECT id FROM m_admin WHERE username = '".$det_user->nim."' AND level = 'siswa'")->num_rows();
 
 				if ($q_cek_username < 1) {
-					$generate_password = random_string('nozero', 8);
+					$generate_password = random_string('nozero', 6);
 					$this->db->query("INSERT INTO m_admin VALUES (null, '".$det_user->nim."','". base64_encode($generate_password)."', 'siswa', '".$det_user->id."')");
 					$ret_arr['status_scan_qr'] 	= ['profile' => $det_user, 'auth' => $generate_password];
 					$ret_arr['status'] 	= "ok";
 					$ret_arr['caption']	= "tambah user sukses";
 					j($ret_arr);
 				} elseif ($q_cek_username != 0) {
-					$new_generate_password = random_string('nozero', 8);
-					$this->db->where('username', $det_user->nim);
-					$this->db->update('m_admin', ['password' => base64_encode($new_generate_password)]);
+					$new_generate_password = random_string('nozero', 6);
+					$this->db->where('username', $det_user->nim)->update('m_admin', ['password' => base64_encode($new_generate_password)]);
 					$ret_arr['status_scan_qr'] 	= ['profile' => $det_user, 'auth' => $new_generate_password];
 					$ret_arr['status'] 	= "ok";
 					$ret_arr['caption']	= "PIN Telah Diganti";
@@ -207,7 +207,7 @@ class Adm extends CI_Controller {
                 if ($d['ada'] == "0") {
 					$data_ok[5] .= '<a href="#" onclick="return m_scan_qr('.$d['id'].','.$d['nim'].');" class="btn btn-info btn-md"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Buat PIN</a>';
 
-					if($this->session->userdata('admin_level') === 'admin') {
+					if($this->session->userdata('admin_level') === 'admin' || $this->session->userdata('admin_level') === 'registrasi') {
 						$data_ok[5] .= '<a href="#" onclick="return m_siswa_u('.$d['id'].');" class="btn btn-warning btn-md"><i class="glyphicon glyphicon-user" style="margin-left: 0px; color: #fff"></i> &nbsp;&nbsp;Buat PIN Manual</a>';
 					}
 					} else {
